@@ -1,10 +1,11 @@
 {
   "name": "bet-scraper",
+  "private": true,
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js",
+    "start": "node index.js",
     "dev": "nodemon --inspect index.js"
   },
   "keywords": [],

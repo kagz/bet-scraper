@@ -1,10 +1,6 @@
-/* eslint-disable no-return-await */
-/* eslint-disable strict */
-/* eslint-disable quotes */
-/* eslint-disable linebreak-style */
+'use strict';
 
-
-const typeorm = require("typeorm");
+const typeorm = require('typeorm');
 
 class Game {
   constructor(id, name) {
@@ -13,30 +9,28 @@ class Game {
   }
 }
 
-const { EntitySchema } = require("typeorm");
+const { EntitySchema } = require('typeorm');
 
 const GameSchema = new EntitySchema({
-  name: "Game",
+  name: 'Game',
   target: Game,
   columns: {
     id: {
       primary: true,
-      type: "int",
+      type: 'int',
       generated: true,
     },
-    name: {
-      type: "varchar",
-    },
+    name: { type: 'varchar' },
   },
 });
 async function getConnection() {
-  return await typeorm.createConnection({
-    type: "mysql",
-    host: "localhost",
+  return typeorm.createConnection({
+    type: 'mysql',
+    host: 'localhost',
     port: 3306,
-    username: "root",
-    password: "",
-    database: "sportsbets",
+    username: 'root',
+    password: '',
+    database: 'sportsbets',
     synchronize: true,
     logging: false,
     entities: [GameSchema],
@@ -61,7 +55,7 @@ async function insertGame(names) {
   // save
   const gameRepo = connection.getRepository(Game);
   const res = await gameRepo.save(game);
-  console.log("saved", res);
+  console.log('saved', res);
 
   // return new list
   const allGames = await gameRepo.find();
